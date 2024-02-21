@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SCREENS_BREAKPOINTS } from "../../styles/screens-breakpoints";
 
 export const Container = styled.aside`
   grid-area: menu;
@@ -8,12 +9,35 @@ export const Container = styled.aside`
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: ${SCREENS_BREAKPOINTS.MD}) {
+    grid-area: none;
+    position: absolute;
+    z-index: 1;
+
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    &[data-menu-is-open="true"] {
+      transform: translateX(0);
+    }
+  }
 `;
 
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 32px 24px;
+
+  > button {
+    display: none;
+  }
+
+  @media (max-width: ${SCREENS_BREAKPOINTS.MD}) {
+    > button {
+      display: block;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -72,12 +96,11 @@ export const Footer = styled.footer`
 `;
 
 export const Button = styled.button`
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 
   > svg {
     font-size: 20px;
     color: ${({ theme }) => theme.COLORS.GRAY_300};
   }
 `;
-

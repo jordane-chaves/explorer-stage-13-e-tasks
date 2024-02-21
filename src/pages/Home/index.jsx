@@ -12,6 +12,7 @@ import { Container, FixedContent } from "./styles";
 export function Home() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   useEffect(() => {
     switch (filter) {
@@ -26,10 +27,13 @@ export function Home() {
 
   return (
     <Container>
-      <SideMenu />
+      <SideMenu
+        handleCloseMenu={() => setMenuIsOpen(false)}
+        menuIsOpen={menuIsOpen}
+      />
 
       <FixedContent>
-        <Header />
+        <Header handleOpenMenu={() => setMenuIsOpen(true)} />
         <Priorities />
         <Search setFilter={setFilter} filter={filter} />
       </FixedContent>

@@ -5,6 +5,8 @@ import { ShortTask } from "../ShortTask";
 import { tasks } from "../../utils/tasks";
 
 export function Priorities() {
+  const priorityTasks = tasks.filter((task) => task.priority)
+
   return (
     <Container>
       <Header>
@@ -13,13 +15,12 @@ export function Priorities() {
           Prioridades
         </h1>
 
-        <small>2</small>
+        <small>{priorityTasks.length}</small>
       </Header>
 
       <Tasks>
         {
-          tasks
-            .filter((task) => task.priority)
+          priorityTasks
             .map((task) => (
               <ShortTask key={task.id} title={task.title} />
             ))
